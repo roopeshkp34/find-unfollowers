@@ -1,7 +1,4 @@
-from collections import defaultdict
-from bs4 import BeautifulSoup
 import streamlit as st
-import pandas as pd
 
 from instagram import Instagram
 
@@ -12,9 +9,7 @@ st.set_page_config(
     page_title="Find Un-followers",
 )
 col1, col2 = st.columns([6, 1])
-# with col1:
-#     # st.image("./media/MAIA.svg", width=94)
-#     ...
+
 with col1:
     st.markdown(
         "<h1 style='display: flex; align-items: center; height: 50px; margin-left: -5px; margin-top: -15px; font-size: x-large;'>Find Un followers</h1>",
@@ -57,10 +52,10 @@ st.markdown(
     """
 )
 
-followers_file = st.file_uploader(f"Upload Followers file", type=["html", "json"])
+followers_file = st.file_uploader("Upload Followers file", type=["html", "json"])
 
 if followers_file:
-    following_file = st.file_uploader(f"Upload Following file", type=["html", "json"])
+    following_file = st.file_uploader("Upload Following file", type=["html", "json"])
     if following_file:
         users_df = Instagram().master(followers_file=followers_file, following_file=following_file)
         st.write(users_df.to_html(escape=False), unsafe_allow_html=True)
