@@ -82,8 +82,8 @@ class Instagram:
         followers_user = followers.keys()
         not_following_users = {}
         for following in followings.keys():
-            if following not in followers_user:
-                not_following_users[following] = followings[following]
+            if following.split("/")[-1] not in followers_user:
+                not_following_users[following.split("/")[-1]] = followings[following]
         
         return self.get_users_df(not_following_users)
 
